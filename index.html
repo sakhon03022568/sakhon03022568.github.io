@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ศูนย์รวมระบบงาน | กฟจ.สกลนคร</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --pea-purple: #5c2d91;
+      --pea-purple-dark: #431c70;
+      --pea-gold: #f59e0b;
+      --bg-color: #f4f6f9;
+    }
+
+    body {
+      font-family: 'Prompt', sans-serif;
+      background-color: var(--bg-color);
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, var(--pea-purple-dark) 0%, var(--pea-purple) 70%, #7e3af2 100%);
+      color: #ffffff;
+      padding: 34px 0 48px 0;
+      border-bottom: 4px solid var(--pea-gold);
+      box-shadow: 0 4px 20px rgba(92, 45, 145, 0.22);
+    }
+
+    .header-logo {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 14px;
+      padding: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .badge-portal {
+      background-color: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fde68a;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    .control-bar {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-top: -26px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e2e8f0;
+    }
+
+    .cat-btn {
+      border-radius: 50px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      padding: 6px 16px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      transition: all 0.2s;
+    }
+
+    .cat-btn:hover {
+      border-color: var(--pea-purple);
+      color: var(--pea-purple);
+    }
+
+    .cat-btn.active {
+      background-color: var(--pea-purple);
+      border-color: var(--pea-purple);
+      color: #ffffff;
+    }
+
+    .app-card {
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 22px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .app-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--pea-purple);
+      box-shadow: 0 12px 24px rgba(92, 45, 145, 0.14);
+      color: inherit;
+    }
+
+    .icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .theme-purple { background: #f3ebfc; color: #5c2d91; }
+    .theme-amber  { background: #fef3c7; color: #b45309; }
+    .theme-blue   { background: #dbeafe; color: #1d4ed8; }
+    .theme-green  { background: #dcfce7; color: #15803d; }
+
+    .cat-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 50px;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .url-hint {
+      font-family: monospace;
+      font-size: 0.76rem;
+      color: #64748b;
+      background: #f8fafc;
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin-top: 12px;
+      word-break: break-all;
+    }
+
+    .open-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--pea-purple);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .app-card:hover .open-link i {
+      transform: translateX(4px);
+      transition: transform 0.2s;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ส่วนหัว -->
+  <header class="hero-header">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <div class="d-flex align-items-center gap-3">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Logo_of_the_Provincial_Electricity_Authority_of_Thailand.svg/250px-Logo_of_the_Provincial_Electricity_Authority_of_Thailand.svg.png"
+               onerror="this.style.display='none'"
+               alt="PEA Logo" class="header-logo">
+          <div>
+            <span class="badge-portal mb-1"><i class="fa-solid fa-bolt me-1"></i> PEA SAKON NAKHON PORTAL</span>
+            <h2 class="fw-bold mb-1">ศูนย์รวมระบบบริหารจัดการงาน</h2>
+            <p class="mb-0 opacity-75 small">การไฟฟ้าส่วนภูมิภาคจังหวัดสกลนคร | เลือกระบบงานที่ต้องการใช้งาน</p>
+          </div>
+        </div>
+        <div class="text-white-50 small" id="totalSystemsBadge">
+          พร้อมใช้งาน 0 ระบบ
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mb-5">
+    <!-- แถบค้นหาและหมวดหมู่ -->
+    <div class="control-bar mb-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+            <input type="text" id="searchInput" class="form-control border-start-0" placeholder="ค้นหาชื่อระบบ หรือรายละเอียด..." oninput="renderApps()">
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="d-flex flex-wrap gap-2 justify-content-md-end" id="categoryButtons"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- รายการการ์ดเว็บลิงก์ -->
+    <div class="row g-4" id="appsGrid"></div>
+  </main>
+
+  <footer>
+    <div class="container" id="footerText">
+      การไฟฟ้าส่วนภูมิภาคจังหวัดสกลนคร
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // แก้ไข / เพิ่มลิงก์เว็บทั้งหมดที่นี่ที่เดียว
+    // อนาคตมีเว็บใหม่ ให้ก๊อปปี้ชุด { ... }, มาวางต่อในรายการด้านล่างได้เลย
+    // =========================================================================
+    const SYSTEMS = [
+      {
+        title: "ระบบบริหารจัดการคลังสำรองอุปกรณ์แก้กระแสไฟฟ้าขัดข้อง",
+        desc: "ตรวจสอบยอดคงเหลือ Safety Stock เทียบคลังพัสดุสกลนคร ครบทั้ง 10 หน่วยงาน และพิมพ์ใบเบิกพัสดุ",
+        url: "https://sakhon03022568.github.io/Stock_SKK/",
+        category: "คลังพัสดุ",
+        icon: "fa-solid fa-warehouse",
+        theme: "purple", // เลือกสี: purple, amber, blue, green
+        newTab: true     // true = เปิดแท็บใหม่, false = เปิดในหน้าเดิม
+      },
+      {
+        title: "ระบบติดตามงาน AUC / WBS (กฟจ.สกลนคร)",
+        desc: "ตรวจสอบและบริหารจัดการข้อมูลงานระหว่างก่อสร้าง (AUC) และรหัส WBS",
+        url: "https://sakhon03022568.github.io/AUC_WBS_SKK/",
+        category: "งานบัญชี / WBS",
+        icon: "fa-solid fa-diagram-project",
+        theme: "amber",
+        newTab: true
+      }
+
+      /* --- ตัวอย่างตอนเพิ่มเว็บที่ 3 ในอนาคต (ลบ /* กับ * / ออกแล้วแก้ข้อมูล) ---
+      ,{
+        title: "ชื่อระบบงานที่ 3",
+        desc: "คำอธิบายสั้นๆ ของระบบงานที่ 3",
+        url: "https://sakhon03022568.github.io/ชื่อ-repo-ใหม่/",
+        category: "รายงาน",
+        icon: "fa-solid fa-chart-pie",
+        theme: "blue",
+        newTab: true
+      }
+      */
+    ];
+
+    let activeCategory = "ทั้งหมด";
+
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function renderCategories() {
+      const categories = ["ทั้งหมด", ...new Set(SYSTEMS.map(item => item.category).filter(Boolean))];
+      const container = document.getElementById("categoryButtons");
+
+      container.innerHTML = categories.map(cat => `
+        <button type="button" class="cat-btn ${cat === activeCategory ? 'active' : ''}"
+                onclick="selectCategory('${escapeHtml(cat)}')">
+          ${escapeHtml(cat)}
+        </button>
+      `).join("");
+    }
+
+    function selectCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderApps();
+    }
+
+    function renderApps() {
+      const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+      const grid = document.getElementById("appsGrid");
+
+      const filtered = SYSTEMS.filter(item => {
+        const matchCat = activeCategory === "ทั้งหมด" || item.category === activeCategory;
+        const matchKey = !keyword ||
+          item.title.toLowerCase().includes(keyword) ||
+          item.desc.toLowerCase().includes(keyword) ||
+          item.category.toLowerCase().includes(keyword);
+        return matchCat && matchKey;
+      });
+
+      document.getElementById("totalSystemsBadge").textContent = `พร้อมใช้งาน ${SYSTEMS.length} ระบบ`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-12 text-center py-5 text-muted">
+            <i class="fa-regular fa-folder-open fa-2x mb-2"></i>
+            <div>ไม่พบระบบงานที่ค้นหา</div>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => {
+        const targetAttr = item.newTab ? 'target="_blank" rel="noopener noreferrer"' : '';
+        const themeClass = `theme-${item.theme || 'purple'}`;
+        return `
+          <div class="col-12 col-md-6 col-lg-4">
+            <a href="${escapeHtml(item.url)}" ${targetAttr} class="app-card">
+              <div>
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <div class="icon-box ${themeClass}">
+                    <i class="${escapeHtml(item.icon || 'fa-solid fa-link')}"></i>
+                  </div>
+                  <span class="cat-tag">${escapeHtml(item.category || 'ทั่วไป')}</span>
+                </div>
+                <h5 class="fw-bold mb-2">${escapeHtml(item.title)}</h5>
+                <p class="text-muted small mb-0">${escapeHtml(item.desc)}</p>
+                <div class="url-hint">${escapeHtml(item.url)}</div>
+              </div>
+              <div class="open-link">
+                เปิดใช้งานระบบ <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </a>
+          </div>
+        `;
+      }).join("");
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const yearBE = new Date().getFullYear() + 543;
+      document.getElementById("footerText").textContent = `การไฟฟ้าส่วนภูมิภาคจังหวัดสกลนคร | พ.ศ. ${yearBE}`;
+      renderCategories();
+      renderApps();
+    });
+  </script>
+</body>
+</html>
