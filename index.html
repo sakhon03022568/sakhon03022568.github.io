@@ -64,9 +64,9 @@
 
     .cat-btn {
       border-radius: 50px;
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       font-weight: 500;
-      padding: 6px 16px;
+      padding: 7px 18px;
       border: 1px solid #cbd5e1;
       background: #ffffff;
       color: #475569;
@@ -86,34 +86,81 @@
 
     .app-card {
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 18px;
       border: 1px solid #e2e8f0;
-      padding: 22px;
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       text-decoration: none;
       color: inherit;
+      overflow: hidden;
       transition: all 0.25s ease;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
     }
 
     .app-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       border-color: var(--pea-purple);
-      box-shadow: 0 12px 24px rgba(92, 45, 145, 0.14);
+      box-shadow: 0 14px 28px rgba(92, 45, 145, 0.16);
       color: inherit;
     }
 
-    .icon-box {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
+    /* ส่วนรูปภาพหัวการ์ด */
+    .card-banner {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background: #f1f5f9;
+      overflow: hidden;
+      border-bottom: 3px solid var(--pea-gold);
+    }
+
+    .card-banner-img,
+    .card-banner svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .app-card:hover .card-banner-img,
+    .app-card:hover .card-banner svg {
+      transform: scale(1.03);
+    }
+
+    .cat-tag-float {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--pea-purple-dark);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+      backdrop-filter: blur(4px);
+    }
+
+    .card-body-custom {
+      padding: 20px 22px 22px 22px;
+      flex: 1;
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .icon-badge-inline {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
 
     .theme-purple { background: #f3ebfc; color: #5c2d91; }
@@ -121,28 +168,22 @@
     .theme-blue   { background: #dbeafe; color: #1d4ed8; }
     .theme-green  { background: #dcfce7; color: #15803d; }
 
-    .cat-tag {
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 50px;
-      background: #f1f5f9;
-      color: #475569;
-    }
-
     .url-hint {
       font-family: monospace;
       font-size: 0.76rem;
       color: #64748b;
       background: #f8fafc;
-      padding: 4px 8px;
-      border-radius: 6px;
-      margin-top: 12px;
-      word-break: break-all;
+      border: 1px solid #e2e8f0;
+      padding: 5px 10px;
+      border-radius: 8px;
+      margin-top: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .open-link {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 600;
       color: var(--pea-purple);
       display: inline-flex;
@@ -217,25 +258,30 @@
   <script>
     // =========================================================================
     // แก้ไข / เพิ่มลิงก์เว็บทั้งหมดที่นี่ที่เดียว
-    // อนาคตมีเว็บใหม่ ให้ก๊อปปี้ชุด { ... }, มาวางต่อในรายการด้านล่างได้เลย
+    // ถ้าต้องการใช้รูปถ่ายจริงของหน่วยงาน ให้ใส่พาธไฟล์ใน imageUrl เช่น "./stock.jpg"
+    // ถ้าปล่อย imageUrl: "" ระบบจะแสดงภาพประกอบ PEA อัตโนมัติ
     // =========================================================================
     const SYSTEMS = [
       {
         title: "ระบบบริหารจัดการคลังสำรองอุปกรณ์แก้กระแสไฟฟ้าขัดข้อง",
         desc: "ตรวจสอบยอดคงเหลือ Safety Stock เทียบคลังพัสดุสกลนคร ครบทั้ง 10 หน่วยงาน และพิมพ์ใบเบิกพัสดุ",
         url: "https://sakhon03022568.github.io/Stock_SKK/",
-        category: "คลังพัสดุ",
+        category: "คลังแก้ไฟ",
         icon: "fa-solid fa-warehouse",
-        theme: "purple", // เลือกสี: purple, amber, blue, green
-        newTab: true     // true = เปิดแท็บใหม่, false = เปิดในหน้าเดิม
+        theme: "purple",
+        illustration: "warehouse", // ภาพคลังพัสดุ PEA
+        imageUrl: "",              // ใส่ลิงก์รูปหรือ "./ชื่อรูป.jpg" ถ้าต้องการใช้รูปถ่ายจริง
+        newTab: true
       },
       {
         title: "ระบบติดตามงาน AUC / WBS (กฟจ.สกลนคร)",
-        desc: "ตรวจสอบและบริหารจัดการข้อมูลงานระหว่างก่อสร้าง (AUC) และรหัส WBS",
+        desc: "ตรวจสอบและบริหารจัดการข้อมูลงานก่อสร้างระบบจำหน่ายไฟฟ้า (AUC) และรหัส WBS",
         url: "https://sakhon03022568.github.io/AUC_WBS_SKK/",
-        category: "งานบัญชี / WBS",
-        icon: "fa-solid fa-diagram-project",
+        category: "งานก่อสร้าง",
+        icon: "fa-solid fa-bolt",
         theme: "amber",
+        illustration: "construction", // ภาพงานก่อสร้างระบบจำหน่ายไฟฟ้า PEA
+        imageUrl: "",                 // ใส่ลิงก์รูปหรือ "./ชื่อรูป.jpg" ถ้าต้องการใช้รูปถ่ายจริง
         newTab: true
       }
 
@@ -247,6 +293,8 @@
         category: "รายงาน",
         icon: "fa-solid fa-chart-pie",
         theme: "blue",
+        illustration: "default",
+        imageUrl: "",
         newTab: true
       }
       */
@@ -261,6 +309,178 @@
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
+    }
+
+    // ภาพประกอบ Vector สื่อความหมายเฉพาะของ กฟภ. (โหลดเร็ว ไม่มีวันลิงก์เสีย)
+    function getIllustrationSvg(type) {
+      if (type === "warehouse") {
+        // ภาพคลังพัสดุ PEA (อาคารคลังพัสดุ + ชั้นวางอุปกรณ์ไฟฟ้า + โรลสายเคเบิล)
+        return `
+          <svg viewBox="0 0 400 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bgWarehouse" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f3e8ff"/>
+                <stop offset="100%" stop-color="#ddd6fe"/>
+              </linearGradient>
+              <linearGradient id="roofPea" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#431c70"/>
+                <stop offset="100%" stop-color="#5c2d91"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="180" fill="url(#bgWarehouse)"/>
+            <!-- ถนน/ลานคอนกรีต -->
+            <rect x="0" y="148" width="400" height="32" fill="#cbd5e1"/>
+            <line x1="0" y1="148" x2="400" y2="148" stroke="#94a3b8" stroke-width="2"/>
+
+            <!-- อาคารคลังพัสดุ กฟภ. -->
+            <polygon points="45,62 200,24 355,62" fill="url(#roofPea)"/>
+            <polygon points="45,62 355,62 355,67 45,67" fill="#f59e0b"/>
+            <rect x="58" y="67" width="284" height="81" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+
+            <!-- ป้าย PEA บนอาคาร -->
+            <rect x="148" y="42" width="104" height="18" rx="4" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="200" y="55" text-anchor="middle" font-family="Prompt, sans-serif" font-size="10.5" font-weight="700" fill="#431c70">PEA คลังพัสดุ</text>
+
+            <!-- ประตูคลังเปิดกว้างเห็นชั้นวางพัสดุ -->
+            <rect x="115" y="76" width="170" height="72" rx="3" fill="#334155"/>
+            <rect x="118" y="79" width="164" height="69" fill="#475569"/>
+
+            <!-- ชั้นวางพัสดุซ้าย -->
+            <rect x="125" y="96" width="66" height="3" fill="#94a3b8"/>
+            <rect x="125" y="120" width="66" height="3" fill="#94a3b8"/>
+            <rect x="125" y="84" width="3" height="64" fill="#cbd5e1"/>
+            <rect x="188" y="84" width="3" height="64" fill="#cbd5e1"/>
+            <!-- กล่องอุปกรณ์บนชั้น -->
+            <rect x="131" y="83" width="20" height="13" rx="2" fill="#f59e0b"/>
+            <rect x="155" y="85" width="28" height="11" rx="2" fill="#fde68a"/>
+            <rect x="131" y="106" width="25" height="14" rx="2" fill="#a855f7"/>
+            <rect x="160" y="104" width="22" height="16" rx="2" fill="#fbbf24"/>
+            <rect x="133" y="131" width="24" height="17" rx="2" fill="#e2e8f0"/>
+            <rect x="162" y="133" width="22" height="15" rx="2" fill="#f59e0b"/>
+
+            <!-- ชั้นวางพัสดุขวา -->
+            <rect x="208" y="96" width="66" height="3" fill="#94a3b8"/>
+            <rect x="208" y="120" width="66" height="3" fill="#94a3b8"/>
+            <rect x="208" y="84" width="3" height="64" fill="#cbd5e1"/>
+            <rect x="271" y="84" width="3" height="64" fill="#cbd5e1"/>
+            <rect x="214" y="84" width="24" height="12" rx="2" fill="#7c3aed"/>
+            <rect x="242" y="83" width="24" height="13" rx="2" fill="#f59e0b"/>
+            <rect x="215" y="107" width="28" height="13" rx="2" fill="#fde68a"/>
+            <rect x="247" y="106" width="20" height="14" rx="2" fill="#c084fc"/>
+            <rect x="215" y="132" width="50" height="16" rx="2" fill="#94a3b8"/>
+
+            <!-- โรลสายไฟฟ้าด้านขวา -->
+            <circle cx="322" cy="133" r="15" fill="#92400e" stroke="#451a03" stroke-width="2"/>
+            <circle cx="322" cy="133" r="10" fill="#1e293b"/>
+            <circle cx="322" cy="133" r="4" fill="#d97706"/>
+
+            <!-- รถโฟล์คลิฟท์ขนาดเล็ก / กล่องพาเลทด้านซ้าย -->
+            <rect x="72" y="128" width="26" height="20" rx="3" fill="#f59e0b"/>
+            <rect x="76" y="114" width="18" height="14" rx="2" fill="#5c2d91"/>
+            <circle cx="78" cy="148" r="5" fill="#1e293b"/>
+            <circle cx="93" cy="148" r="5" fill="#1e293b"/>
+            <rect x="98" y="106" width="3" height="40" fill="#334155"/>
+            <rect x="98" y="140" width="13" height="3" fill="#334155"/>
+
+            <!-- สัญลักษณ์สายฟ้าคลังแก้ไฟ -->
+            <circle cx="48" cy="36" r="15" fill="#5c2d91" opacity="0.9"/>
+            <polygon points="50,25 41,38 47,38 45,47 55,34 49,34" fill="#fbbf24"/>
+          </svg>
+        `;
+      }
+
+      if (type === "construction") {
+        // ภาพงานก่อสร้างระบบจำหน่ายไฟฟ้า PEA (เสาไฟฟ้า + สายไฟ 3 เฟส + หม้อแปลง + รถกระเช้า)
+        return `
+          <svg viewBox="0 0 400 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="skyBuild" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e0f2fe"/>
+                <stop offset="65%" stop-color="#fef3c7"/>
+                <stop offset="100%" stop-color="#fde68a"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="180" fill="url(#skyBuild)"/>
+
+            <!-- ก้อนเมฆ -->
+            <ellipse cx="75" cy="36" rx="28" ry="11" fill="#ffffff" opacity="0.8"/>
+            <ellipse cx="95" cy="32" rx="18" ry="9" fill="#ffffff" opacity="0.8"/>
+            <ellipse cx="315" cy="30" rx="26" ry="10" fill="#ffffff" opacity="0.75"/>
+
+            <!-- พื้นดินและถนน -->
+            <rect x="0" y="146" width="400" height="34" fill="#94a3b8"/>
+            <rect x="0" y="146" width="400" height="5" fill="#64748b"/>
+
+            <!-- เสาไฟฟ้าคอนกรีต ต้นที่ 1 (ซ้าย) -->
+            <polygon points="94,146 102,146 99,34 96,34" fill="#cbd5e1" stroke="#64748b" stroke-width="1.2"/>
+            <!-- คอนสายไฟ 22 kV -->
+            <rect x="64" y="46" width="67" height="5" rx="1.5" fill="#475569"/>
+            <rect x="70" y="64" width="55" height="4" rx="1.5" fill="#475569"/>
+            <!-- ลูกถ้วยฉนวน -->
+            <rect x="68" y="40" width="5" height="6" rx="1" fill="#7c2d12"/>
+            <rect x="95" y="40" width="5" height="6" rx="1" fill="#7c2d12"/>
+            <rect x="122" y="40" width="5" height="6" rx="1" fill="#7c2d12"/>
+            <!-- หม้อแปลงไฟฟ้าบนเสา -->
+            <rect x="85" y="76" width="24" height="28" rx="3" fill="#64748b" stroke="#334155" stroke-width="1.2"/>
+            <line x1="90" y1="80" x2="90" y2="100" stroke="#cbd5e1" stroke-width="1.5"/>
+            <line x1="97" y1="80" x2="97" y2="100" stroke="#cbd5e1" stroke-width="1.5"/>
+            <line x1="104" y1="80" x2="104" y2="100" stroke="#cbd5e1" stroke-width="1.5"/>
+            <rect x="91" y="71" width="4" height="5" fill="#b45309"/>
+            <rect x="100" y="71" width="4" height="5" fill="#b45309"/>
+
+            <!-- เสาไฟฟ้าคอนกรีต ต้นที่ 2 (ขวา) -->
+            <polygon points="310,146 318,146 315,38 312,38" fill="#cbd5e1" stroke="#64748b" stroke-width="1.2"/>
+            <rect x="284" y="50" width="58" height="4.5" rx="1.5" fill="#475569"/>
+            <rect x="290" y="68" width="46" height="4" rx="1.5" fill="#475569"/>
+            <rect x="288" y="44" width="5" height="6" rx="1" fill="#7c2d12"/>
+            <rect x="311" y="44" width="5" height="6" rx="1" fill="#7c2d12"/>
+            <rect x="334" y="44" width="5" height="6" rx="1" fill="#7c2d12"/>
+
+            <!-- สายส่งระบบจำหน่าย 3 เฟส พาดระหว่างเสา -->
+            <path d="M 70,41 Q 180,62 290,45" fill="none" stroke="#1e293b" stroke-width="1.6"/>
+            <path d="M 97,41 Q 205,62 313,45" fill="none" stroke="#1e293b" stroke-width="1.6"/>
+            <path d="M 124,41 Q 230,62 336,45" fill="none" stroke="#1e293b" stroke-width="1.6"/>
+            <path d="M 102,66 Q 210,82 312,70" fill="none" stroke="#334155" stroke-width="1.2"/>
+
+            <!-- รถกระเช้าปฏิบัติงาน กฟภ. (สีม่วง-เหลือง) -->
+            <rect x="180" y="120" width="66" height="22" rx="4" fill="#5c2d91"/>
+            <rect x="228" y="108" width="26" height="26" rx="4" fill="#f59e0b"/>
+            <rect x="234" y="112" width="15" height="10" rx="2" fill="#e0f2fe"/>
+            <text x="204" y="135" text-anchor="middle" font-family="Prompt, sans-serif" font-size="9" font-weight="700" fill="#fde68a">PEA</text>
+            <circle cx="196" cy="144" r="7" fill="#1e293b"/>
+            <circle cx="196" cy="144" r="3" fill="#cbd5e1"/>
+            <circle cx="240" cy="144" r="7" fill="#1e293b"/>
+            <circle cx="240" cy="144" r="3" fill="#cbd5e1"/>
+
+            <!-- แขนบูมกระเช้า -->
+            <line x1="205" y1="120" x2="170" y2="85" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+            <line x1="170" y1="85" x2="145" y2="68" stroke="#431c70" stroke-width="4" stroke-linecap="round"/>
+            <!-- ตะกร้ากระเช้า + ช่างไฟฟ้าสวมหมวกนิรภัย -->
+            <rect x="132" y="60" width="22" height="14" rx="2" fill="#ffffff" stroke="#431c70" stroke-width="1.5"/>
+            <circle cx="143" cy="54" r="4.5" fill="#fed7aa"/>
+            <path d="M 137,53 A 6,6 0 0 1 149,53 Z" fill="#f59e0b"/>
+
+            <!-- กรวยจราจรงานก่อสร้าง -->
+            <polygon points="154,146 164,146 161,132 157,132" fill="#f97316"/>
+            <polygon points="274,146 284,146 281,132 277,132" fill="#f97316"/>
+          </svg>
+        `;
+      }
+
+      // ภาพสำรองกรณีเพิ่มระบบใหม่ในอนาคต
+      return `
+        <svg viewBox="0 0 400 180" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bgDefault" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#431c70"/>
+              <stop offset="100%" stop-color="#7e3af2"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="180" fill="url(#bgDefault)"/>
+          <circle cx="200" cy="90" r="36" fill="rgba(255,255,255,0.14)"/>
+          <polygon points="205,65 186,93 199,93 194,115 214,87 201,87" fill="#f59e0b"/>
+        </svg>
+      `;
     }
 
     function renderCategories() {
@@ -308,22 +528,31 @@
       grid.innerHTML = filtered.map(item => {
         const targetAttr = item.newTab ? 'target="_blank" rel="noopener noreferrer"' : '';
         const themeClass = `theme-${item.theme || 'purple'}`;
+        const bannerMedia = item.imageUrl
+          ? `<img src="${escapeHtml(item.imageUrl)}" alt="${escapeHtml(item.title)}" class="card-banner-img" onerror="this.outerHTML=getIllustrationSvg('${escapeHtml(item.illustration || 'default')}')">`
+          : getIllustrationSvg(item.illustration || "default");
+
         return `
           <div class="col-12 col-md-6 col-lg-4">
             <a href="${escapeHtml(item.url)}" ${targetAttr} class="app-card">
-              <div>
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                  <div class="icon-box ${themeClass}">
-                    <i class="${escapeHtml(item.icon || 'fa-solid fa-link')}"></i>
-                  </div>
-                  <span class="cat-tag">${escapeHtml(item.category || 'ทั่วไป')}</span>
-                </div>
-                <h5 class="fw-bold mb-2">${escapeHtml(item.title)}</h5>
-                <p class="text-muted small mb-0">${escapeHtml(item.desc)}</p>
-                <div class="url-hint">${escapeHtml(item.url)}</div>
+              <div class="card-banner">
+                ${bannerMedia}
+                <span class="cat-tag-float">${escapeHtml(item.category || 'ทั่วไป')}</span>
               </div>
-              <div class="open-link">
-                เปิดใช้งานระบบ <i class="fa-solid fa-arrow-right"></i>
+              <div class="card-body-custom">
+                <div>
+                  <div class="d-flex align-items-start gap-2 mb-2">
+                    <div class="icon-badge-inline ${themeClass}">
+                      <i class="${escapeHtml(item.icon || 'fa-solid fa-link')}"></i>
+                    </div>
+                    <h5 class="fw-bold mb-0" style="line-height: 1.35;">${escapeHtml(item.title)}</h5>
+                  </div>
+                  <p class="text-muted small mb-0 mt-2">${escapeHtml(item.desc)}</p>
+                  <div class="url-hint" title="${escapeHtml(item.url)}">${escapeHtml(item.url)}</div>
+                </div>
+                <div class="open-link">
+                  เปิดใช้งานระบบ <i class="fa-solid fa-arrow-right"></i>
+                </div>
               </div>
             </a>
           </div>
